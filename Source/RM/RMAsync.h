@@ -6,8 +6,6 @@
 #include "Kismet/BlueprintAsyncActionBase.h"
 #include "RMAsync.generated.h"
 
-
-
 USTRUCT(BlueprintType)
 struct FRMCharInfoStruct
 {
@@ -15,19 +13,19 @@ struct FRMCharInfoStruct
 		// add stuff you'd like to
 
 public:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 CharID = 0;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Name = "";
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Status = "";
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Species = "";
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Type = "";
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Gender = "";
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UTexture2D* Image;
 
 };
