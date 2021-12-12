@@ -8,7 +8,29 @@
 #include "Http.h"
 #include "JSONRequesterComponent.generated.h"
 
-
+// USTRUCT(BlueprintType)
+// struct FRMCharInfoStruct
+// {
+// 	GENERATED_USTRUCT_BODY()
+// 		// add stuff you'd like to
+// 
+// public:
+// 	UPROPERTY(EditAnywhere)
+// 	int32 CharID = 0;
+// 	UPROPERTY(EditAnywhere)
+// 	FString Name = "";
+// 	UPROPERTY(EditAnywhere)
+// 	FString Status = "";
+// 	UPROPERTY(EditAnywhere)
+// 	FString Species = "";
+// 	UPROPERTY(EditAnywhere)
+// 	FString Type = "";
+// 	UPROPERTY(EditAnywhere)
+// 	FString Gender = "";
+// 	UPROPERTY(EditAnywhere)
+// 	UTexture2D* Image;
+// 
+// };
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class RM_API UJSONRequesterComponent : public UActorComponent
 {
