@@ -27,11 +27,12 @@ void URMAsync::Activate()
 	HttpRequest->ProcessRequest();
 }
 
-URMAsync* URMAsync::AsyncRequestHTTP(UObject* WorldContextObject, FString URL)
+URMAsync* URMAsync::AsyncRequestHTTP(UObject* WorldContextObject, int32 CharToGet)
 {
+	FString Result = "https://rickandmortyapi.com/api/character/" + FString::FromInt(CharToGet);
 	// Create Action Instance for Blueprint System
 	URMAsync* Action = NewObject<URMAsync>();
-	Action->URL = URL;
+	Action->URL = Result;
 	Action->RegisterWithGameInstance(WorldContextObject);
 
 	return Action;

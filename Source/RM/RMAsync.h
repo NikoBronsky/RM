@@ -47,7 +47,7 @@ public:
 	virtual void Activate() override;
 
 	UFUNCTION(BlueprintCallable, meta = (BlueprintInternalUseOnly = "true", Category = "HTTP", WorldContext = "WorldContextObject"))
-	static URMAsync* AsyncRequestHTTP(UObject* WorldContextObject, FString URL);
+	static URMAsync* AsyncRequestHTTP(UObject* WorldContextObject, int32 CharToGet);
 
 	UPROPERTY(BlueprintAssignable)
 	FOnHttpRequestCompleted Completed;
