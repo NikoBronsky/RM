@@ -28,7 +28,7 @@ public:
 
 	/* The actual HTTP call */
 	UFUNCTION(BlueprintCallable)
-	void CallHttp(FString URL = "https://rickandmortyapi.com/api/character?page=2");
+	void GetCharacterByID(int32 CharID);
 
 	/*Assign this function to call when the GET request processes sucessfully*/
 	void OnResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bWasSuccessful);
@@ -39,5 +39,5 @@ private:
 
 	int32 CharMaximum = 826;
 	
-	FString DefaultURL = "https://rickandmortyapi.com/api/character?page=2";
+	FString DefaultURL = "https://rickandmortyapi.com/api/character/";
 };

@@ -16,18 +16,18 @@ UJSONRequesterComponent::UJSONRequesterComponent()
 
 // Called when the game starts
 void UJSONRequesterComponent::BeginPlay()
-{
-	CallHttp();
+{	
 	Super::BeginPlay();
 }
 
 
-void UJSONRequesterComponent::CallHttp(FString URL)
+void UJSONRequesterComponent::GetCharacterByID(int32 CharID)
 {
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> Request = Http->CreateRequest();
 	Request->OnProcessRequestComplete().BindUObject(this, &UJSONRequesterComponent::OnResponseReceived);
 	//This is the url on which to process the request
-	Request->SetURL("https://rickandmortyapi.com/api/character?page=2");
+	FString URL = DefaultURL + FString::FromInt(CharID);
+	Request->SetURL(URL);
 	Request->SetVerb("GET");
 	Request->SetHeader(TEXT("User-Agent"), "X-UnrealEngine-Agent");
 	Request->SetHeader("Content-Type", TEXT("application/json"));
@@ -40,6 +40,25 @@ void UJSONRequesterComponent::OnResponseReceived(FHttpRequestPtr Request, FHttpR
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Successful"));
 		UE_LOG(LogTemp, Warning, TEXT("%s"), *Response->GetContentAsString());
+
+		//Create a pointer to hold the json serialized data
+		TSharedPtr<FJsonObject> JsonObject;
+
+		//Create a reader pointer to read the json data
+		TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(Response->GetContentAsString());
+
+		//Deserialize the json data given Reader and the actual object to deserialize
+		if (FJsonSerializer::Deserialize(Reader, JsonObject))
+		{
+			//Get the value of the json object by field name
+			int32 recievedInt = JsonObject->GetIntegerField("id");
+			FString RecievedName = JsonObject->GetStringField("name");
+
+			//Output it to the engine
+			GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Green, FString::FromInt(recievedInt));
+			GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Green,(RecievedName));
+
+		}
 	}
 	else
 	{
